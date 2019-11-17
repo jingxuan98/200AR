@@ -13,6 +13,7 @@ import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.rendering.ModelRenderable;
+import com.google.ar.sceneform.rendering.Renderable;
 import com.google.ar.sceneform.rendering.ViewRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.BaseArFragment;
@@ -21,14 +22,10 @@ import com.google.ar.sceneform.ux.TransformableNode;
 public class Activity2 extends AppCompatActivity implements View.OnClickListener {
 
     ArFragment arFragment;
-    private ModelRenderable catRenderable;
+//    private ModelRenderable catRenderable;
 
     ImageView cat;
 
-    View arrayView[];
-    ViewRenderable name_animal;
-
-    int selected = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,43 +34,31 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
 
         arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.sceneform_ux_fragment);
 
-        //View
-        cat = (ImageView)findViewById(R.id.cat);
+//        //View
+       cat = (ImageView)findViewById(R.id.dog);
 
-        setArrayView();
 
-        setClickListener();
+        //Setup  Model(Render) -> When user tap, create anchor  -> attach it to transformable node
 
-        setUpModel();
-
-        arFragment.setOnTapArPlaneListener(new BaseArFragment.OnTapArPlaneListener() {
-            @Override
-            public void onTapPlane(HitResult hitResult, Plane plane, MotionEvent motionEvent) {
+        arFragment.setOnTapArPlaneListener(
+                (HitResult hitResult, Plane plane, MotionEvent motionEvent)-> {
                 //When user Tap on plane, we will add model;
-                if(selected == 1){
+
+                    // Anchor : A fixed location in the real world. Used to transform local coordinates (according to user’s display) to the real-world coordinates.
+
                     Anchor anchor = hitResult.createAnchor();
-                    AnchorNode anchorNode = new AnchorNode(anchor);
-                    anchorNode.setParent(arFragment.getArSceneView().getScene());
-
-                    createModel(anchorNode,selected);
-                }
-            }
-        });
+                    placeObject(arFragment,anchor);
+                });
     }
 
-    private void createModel(AnchorNode anchorNode, int selected){
-        if(selected == 1){
-            TransformableNode cat = new TransformableNode(arFragment.getTransformationSystem());
-            cat.setParent(anchorNode);
-            cat.setRenderable(catRenderable);
-            cat.select();
-        }
-    }
 
-    private void setUpModel(){
+
+    //TO CREATE RENDERABLES = A Renderable is a 3D model that can be placed anywhere in the scene and consists of Meshes, Materials and Textures.
+
+    private void placeObject(ArFragment arFragment, Anchor anchor){
         ModelRenderable.builder()
-                .setSource(this,R.raw.cat)
-                .build().thenAccept(renderable -> catRenderable = renderable )
+                .setSource(arFragment.getContext(),R.raw.table)     //QUES:  USE THIS FOR CONTEXT AND WHEN NEED USE GET()?
+                .build().thenAccept(renderable -> addNodeToScene(arFragment, anchor, renderable) )
                 .exceptionally(
                         throwable -> {
                             Toast.makeText(this,"Unable to load cat model", Toast.LENGTH_SHORT).show();
@@ -82,18 +67,28 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 );
     }
 
-    private void setClickListener(){
-        for (int i=0; i < arrayView.length;i++)
-            arrayView[i].setOnClickListener(this);
+
+    private void addNodeToScene(ArFragment arFragment, Anchor anchor, Renderable renderable){
+
+            // To create an anchor node which is the root node of our scene (image an augmented reality scene as an inverted tree).
+            AnchorNode anchorNode = new AnchorNode(anchor);
+
+            //Set the TransformableNode to the anchorNode so, A transformable node can react to location changes and size changes when the user drags the object or uses pinch to zoom.
+            //TransformableNode =  A node that can react to user’s interactions such as rotation, zoom and drag.
+
+            TransformableNode node = new TransformableNode(arFragment.getTransformationSystem());
+
+            //ENABLE TO SCALE USING PINCH
+            //cat.getScaleController().setMaxScale(0.2f);
+            //cat.getScaleController().setMinScale(0.01f);
+
+            node.setRenderable(renderable); //Sets the Renderable to display for this node.
+            node.setParent(anchorNode);
+            arFragment.getArSceneView().getScene().addChild(anchorNode);
+            node.select();
+
     }
 
-
-    private void setArrayView(){
-        arrayView = new View[]{
-                cat
-        };
-
-    }
 
     @Override
     public void onClick(View v){

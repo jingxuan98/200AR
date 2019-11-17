@@ -3,8 +3,8 @@
     <string name="action_settings">Settings</string>
 
     <string-array name="items">
-        <item>peach</item>
-        <item>tomato</item>
-        <item>squash</item>
+        <item>cat.obj</item>
+        <item>bear.obj</item>
+        <item>dog.obj</item>
     </string-array>
 </resources>

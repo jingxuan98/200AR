@@ -57,6 +57,7 @@
     name: 'cat',
     recenter: 'root',
     scale: 7.6481950000000003,
+
   },
   samplers: [
     {

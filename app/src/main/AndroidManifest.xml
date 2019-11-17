@@ -23,6 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        //If your app strictly requires the device to be ARCore enabled, then set required = true or if AR is not a primary feature or you have handled compatibility for non-compatible devices you can set required = false.
         <meta-data android:name="com.google.ar.core" android:value="required" />
 
         <activity android:name=".Activity2"></activity>
