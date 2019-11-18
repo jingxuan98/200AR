@@ -2,17 +2,21 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.rendering.ModelRenderable;
+import com.google.ar.sceneform.assets.RenderableSource;
 import com.google.ar.sceneform.rendering.Renderable;
 import com.google.ar.sceneform.rendering.ViewRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
@@ -22,9 +26,11 @@ import com.google.ar.sceneform.ux.TransformableNode;
 public class Activity2 extends AppCompatActivity implements View.OnClickListener {
 
     ArFragment arFragment;
-//    private ModelRenderable catRenderable;
-
     ImageView cat;
+
+    private static final String GLTF_ASSET =
+            "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf";
+
 
 
     @Override
@@ -57,7 +63,18 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
 
     private void placeObject(ArFragment arFragment, Anchor anchor){
         ModelRenderable.builder()
-                .setSource(arFragment.getContext(),R.raw.table)     //QUES:  USE THIS FOR CONTEXT AND WHEN NEED USE GET()?
+                .setSource(arFragment.getContext(),
+                        RenderableSource.builder().setSource(
+                                this,
+                                Uri.parse(GLTF_ASSET),
+                                RenderableSource.SourceType.GLTF2)
+                                .setScale(0.5f)  // Scale the original model to 50%.
+                                .setRecenterMode(RenderableSource.RecenterMode.ROOT)
+                                .build()
+
+                        //R.raw.table
+                )     //QUES:  USE THIS FOR CONTEXT AND WHEN NEED USE GET()?
+                .setRegistryId(GLTF_ASSET)
                 .build().thenAccept(renderable -> addNodeToScene(arFragment, anchor, renderable) )
                 .exceptionally(
                         throwable -> {
