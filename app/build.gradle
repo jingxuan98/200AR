@@ -67,3 +67,8 @@ sceneform.asset('sampleData/Furniture Test/Tabel/table.fbx',
         'default',
         'sampleData/Furniture Test/Tabel/table.sfa',
         'src/main/res/raw/table')
+
+sceneform.asset('sampleData/arcticFox/ArcticFox_Posed.obj',
+        'default',
+        'sampleData/arcticFox/ArcticFox_Posed.sfa',
+        'src/main/assets/ArcticFox_Posed')
