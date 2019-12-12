@@ -2,11 +2,24 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.ar.core.Anchor;
+import com.google.ar.core.AugmentedImage;
+import com.google.ar.core.AugmentedImageDatabase;
+import com.google.ar.core.Config;
+import com.google.ar.core.Frame;
+import com.google.ar.core.Session;
+import com.google.ar.core.TrackingState;
+import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.FrameTime;
+import com.google.ar.sceneform.Scene;
+import com.google.ar.sceneform.rendering.ModelRenderable;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,9 +34,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Scene.OnUpdateListener{
 
     Toolbar toolbar;
     FloatingActionButton fab;
@@ -31,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     String [] items;
     private final int PICK_FILES = 71;
     public static List<Uri> uriList = new ArrayList<>();
+    private CustomArFragment arFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+
+        arFragment = (CustomArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+        arFragment.getArSceneView().getScene().addOnUpdateListener(this);
 
         Resources res = getResources();
         myListView = (ListView) findViewById(R.id.myListView);
@@ -118,7 +136,44 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void setupDatabase(Config config, Session session){
+        Bitmap foxBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.fox);
+        AugmentedImageDatabase aid = new AugmentedImageDatabase(session);
+        aid.addImage("fox", foxBitmap);
+        config.setAugmentedImageDatabase(aid);
+    }
+
     public void onClickAR(View view) {
 
     }
+
+    @Override
+    public void onUpdate(FrameTime frameTime) {
+        Frame frame = arFragment.getArSceneView().getArFrame();
+        Collection<AugmentedImage> images = frame.getUpdatedTrackables(AugmentedImage.class);
+
+        for (AugmentedImage image : images ){
+            if (image.getTrackingState() == TrackingState.TRACKING){
+                if (image.getName().equals("fox")){
+                    Anchor anchor = image.createAnchor(image.getCenterPose());
+                    createModel(anchor);
+                }
+            }
+        }
+    }
+
+    private void createModel(Anchor anchor) {
+        ModelRenderable.builder()
+                .setSource(this, Uri.parse("ArcticFox_Posed.sfb"))
+                .build()
+                .thenAccept(modelRenderable -> placeModel(modelRenderable, anchor));
+    }
+
+    private void placeModel(ModelRenderable modelRenderable, Anchor anchor) {
+        AnchorNode anchorNode = new AnchorNode(anchor);
+        anchorNode.setRenderable(modelRenderable);
+        arFragment.getArSceneView().getScene().addChild(anchorNode);
+
+    }
+
 }
