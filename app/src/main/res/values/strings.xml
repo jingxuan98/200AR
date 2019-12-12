@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="action_settings">Settings</string>
+    <string name="ARbutton">ARButton</string>
 
     <string-array name="items">
         <item>cat.obj</item>
