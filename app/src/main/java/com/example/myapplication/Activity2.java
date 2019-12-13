@@ -35,7 +35,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
     String path ;
 
     private static String GLTF_ASSET =
-            "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf";
+            "https://raw.githubusercontent.com/jingxuan98/200AR/master/app/sampleData/TV/model.gltf";
 
 
     @Override

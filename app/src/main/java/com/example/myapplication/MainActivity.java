@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.provider.OpenableColumns;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,10 +34,13 @@ public class MainActivity extends AppCompatActivity {
     ListView myListView;
     String [] items;
     String path;
+    List<Model> models;
     private final int PICK_FILES = 71;
     public static List<Uri> uriList = new ArrayList<>();
 
+
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -41,31 +48,28 @@ public class MainActivity extends AppCompatActivity {
         //setSupportActionBar(toolbar);
 
         Resources res = getResources();
-        myListView = (ListView) findViewById(R.id.myListView);
-        items = res.getStringArray(R.array.items);
 
-        ItemAdapter itemAdapter = new ItemAdapter(this, items);
+        myListView = (ListView) findViewById(R.id.myListView);
+            items = res.getStringArray(R.array.items);
+
+            ItemAdapter itemAdapter = new ItemAdapter(this, items);
         myListView.setAdapter(itemAdapter);
+
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0){
-                    Intent intent = new Intent(MainActivity.this, Activity2.class);
-                    //intent.putExtra("Uri",uriList.get(0).toString());
-                    startActivity(intent);
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (position == 0){
+                        Intent intent = new Intent(MainActivity.this, Activity2.class);
+                        //intent.putExtra("Uri",uriList.get(0).toString());
+                        startActivity(intent);
+                    }
                 }
-            }
         });
 
       //  myListView.setAdapter(new ArrayAdapter<String>(this,R.layout.));
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
 
             @Override
             public void onClick(View v) {
@@ -73,8 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setType("*/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 //To start a activity that will return result
+
                 startActivityForResult(intent,PICK_FILES);
                 //startActivityForResult(Intent.createChooser(intent,"Select your .gITF"),PICK_FILES);
             }
@@ -83,22 +88,59 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected  void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(requestCode==PICK_FILES && resultCode==RESULT_OK && data != null){
+        switch (requestCode) {
 
-            //To return the Uri of the selected file
-            uriList.add(data.getData());
+            case PICK_FILES:
 
-           // path = data.getData().getPath();
+                if (resultCode == RESULT_OK && data != null) {
 
-            System.out.println(data.getData());
-            System.out.println(data.getData().toString());
+                    ClipData clipdata = data.getClipData();
 
-        }else{
-            Toast.makeText(MainActivity.this,"Please select a valid file",Toast.LENGTH_LONG);
+                    if (clipdata != null) {
+
+                        for (int i = 0; i < clipdata.getItemCount(); i++) {
+
+                            Uri uri = clipdata.getItemAt(i).getUri();
+                            models.add(new Model(getFileNameFromUri(uri), uri));
+
+                            Log.d("Uri added",uri.toString());
+                        }
+                    } else {
+                        Uri uri = data.getData();
+                        models.add(new Model(getFileNameFromUri(uri), uri));
+                    }
+
+                    //To return the Uri of the selected file
+                    //uriList.add(data.getData());
+                    // path = data.getData().getPath();
+                }
         }
+    }
+
+    public String getFileNameFromUri(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            Cursor cursor = this.getContentResolver().query(uri, null, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
     }
 
     @Override
