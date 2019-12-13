@@ -23,14 +23,19 @@ import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.BaseArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
+import java.io.File;
+import java.net.URI;
+
 public class Activity2 extends AppCompatActivity implements View.OnClickListener {
 
     ArFragment arFragment;
     ImageView cat;
+    Uri uri;
 
-    private static final String GLTF_ASSET =
+    String path ;
+
+    private static String GLTF_ASSET =
             "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf";
-
 
 
     @Override
@@ -38,7 +43,28 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
+        //Intent to get data
+        //Intent intent = getIntent();
+        //GLTF_ASSET = intent.getStringExtra("Uri");
+
+        //File file = new File(new URI(path));
+        uri = Uri.parse(GLTF_ASSET);
+        //path = yourAndroidURI.uri.getPath() // "/mnt/sdcard/FileName.mp3";
+
+        System.out.println(GLTF_ASSET);
+
         arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.sceneform_ux_fragment);
+
+
+        //To set the hand instruction to null
+//        if (arFragment != null) {
+//            // hiding the plane discovery
+//            arFragment.getPlaneDiscoveryController().hide();
+//            arFragment.getPlaneDiscoveryController().setInstructionView(null);
+//            arFragment.getArSceneView().getPlaneRenderer().setEnabled(false);
+//         //   arFragment.getArSceneView().scene.setOnUpdateListener(
+//        }
+
 
 //        //View
        cat = (ImageView)findViewById(R.id.dog);
@@ -62,23 +88,26 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
     //TO CREATE RENDERABLES = A Renderable is a 3D model that can be placed anywhere in the scene and consists of Meshes, Materials and Textures.
 
     private void placeObject(ArFragment arFragment, Anchor anchor){
+        System.out.println(GLTF_ASSET);
         ModelRenderable.builder()
                 .setSource(arFragment.getContext(),
                         RenderableSource.builder().setSource(
                                 this,
-                                Uri.parse(GLTF_ASSET),
+                                uri,
                                 RenderableSource.SourceType.GLTF2)
+
                                 .setScale(0.5f)  // Scale the original model to 50%.
                                 .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                                 .build()
 
                         //R.raw.table
-                )     //QUES:  USE THIS FOR CONTEXT AND WHEN NEED USE GET()?
+                )    //QUES:  USE THIS FOR CONTEXT AND WHEN NEED USE GET()?
                 .setRegistryId(GLTF_ASSET)
                 .build().thenAccept(renderable -> addNodeToScene(arFragment, anchor, renderable) )
                 .exceptionally(
                         throwable -> {
                             Toast.makeText(this,"Unable to load cat model", Toast.LENGTH_SHORT).show();
+                            System.out.println(GLTF_ASSET);
                             return null;
                         }
                 );
@@ -111,4 +140,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v){
 
     }
+
+
+
+
 }

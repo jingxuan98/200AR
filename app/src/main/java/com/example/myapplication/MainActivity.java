@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab;
     ListView myListView;
     String [] items;
+    String path;
     private final int PICK_FILES = 71;
     public static List<Uri> uriList = new ArrayList<>();
 
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){
                     Intent intent = new Intent(MainActivity.this, Activity2.class);
+                    //intent.putExtra("Uri",uriList.get(0).toString());
                     startActivity(intent);
                 }
             }
@@ -69,11 +71,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent();
-                intent.setType("application/*");
+                intent.setType("*/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
 
                 //To start a activity that will return result
-                startActivityForResult(Intent.createChooser(intent,"Select your .gITF"),PICK_FILES);
+                startActivityForResult(intent,PICK_FILES);
+                //startActivityForResult(Intent.createChooser(intent,"Select your .gITF"),PICK_FILES);
             }
         });
 
@@ -83,11 +86,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(requestCode==71 && resultCode==RESULT_OK && data != null){
+        if(requestCode==PICK_FILES && resultCode==RESULT_OK && data != null){
 
             //To return the Uri of the selected file
             uriList.add(data.getData());
-            System.out.println(uriList.get(0));
+
+           // path = data.getData().getPath();
+
+            System.out.println(data.getData());
+            System.out.println(data.getData().toString());
 
         }else{
             Toast.makeText(MainActivity.this,"Please select a valid file",Toast.LENGTH_LONG);
@@ -108,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -117,4 +126,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
