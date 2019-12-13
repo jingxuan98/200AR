@@ -35,8 +35,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
     String path ;
 
     private static String GLTF_ASSET =
-            "https://raw.githubusercontent.com/jingxuan98/200AR/master/app/sampleData/TV/model.gltf";
-
+            "https://github.com/jingxuan98/200AR/blob/master/app/sampleData/glb%20models/chic196.glb";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +93,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                         RenderableSource.builder().setSource(
                                 this,
                                 uri,
-                                RenderableSource.SourceType.GLTF2)
+                                RenderableSource.SourceType.GLB)
 
                                 .setScale(0.5f)  // Scale the original model to 50%.
                                 .setRecenterMode(RenderableSource.RecenterMode.ROOT)

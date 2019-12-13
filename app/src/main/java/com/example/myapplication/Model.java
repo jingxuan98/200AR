@@ -14,11 +14,11 @@ public class Model {
         this.modelURI = URI;
     }
 
-    public String getImageName() {
+    public String getName() {
         return modelName;
     }
 
-    public Uri getImageURI() {
+    public Uri getURI() {
         return modelURI;
     }
 }
