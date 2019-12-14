@@ -48,6 +48,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -76,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
     List<Model> models = new ArrayList<>();
     private final int PICK_FILES = 71;
     public static List<Uri> uriList = new ArrayList<>();
+    CardView arimage,ar;
+
+    GridLayout mainGrid;
+
 
     FirebaseStorage storage;
     FirebaseFirestore firestore;
@@ -90,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("onCreate() called");
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
@@ -108,6 +114,35 @@ public class MainActivity extends AppCompatActivity {
         Resources res = getResources();
         myListView = (ListView) findViewById(R.id.myListView);
         items = res.getStringArray(R.array.items);
+
+        ar = (CardView) findViewById(R.id.cardView2);
+        arimage = (CardView) findViewById(R.id.cardView);
+
+        ar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, Activity3.class);
+                startActivity(myIntent);
+            }
+        });
+
+        arimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                uploadFinish = false;
+
+                Intent intent = new Intent();
+                intent.setType("application/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+
+                //To start a activity that will return result
+
+                startActivityForResult(intent,PICK_FILES);
+            }
+        }
+        );
 
         ItemAdapter itemAdapter = new ItemAdapter(this, items);
         myListView.setAdapter(itemAdapter);
@@ -128,6 +163,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         });
+
+//        mainGrid = (GridLayout)findViewById(R.id.mainGrid);
+//        //set event
+//        setSingleEvent(mainGrid);
 
       //  myListView.setAdapter(new ArrayAdapter<String>(this,R.layout.));
 
@@ -152,6 +191,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+//    private void setSingleEvent(GridLayout mainGrid) {
+//        //Loop all child item of Main Grid
+//        for (int i = 0; i < mainGrid.getChildCount(); i++)
+//        {
+//            CardView cardView = (CardView)mainGrid.getChildAt(i);
+//            final int finalI = i;
+//            cardView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Toast.makeText(MainActivity.this, "Clicked at index"+ finalI, Toast.LENGTH_SHORT);
+//                }
+//            });
+//        }
+//    }
 
    public void upload(){
         final StorageReference storageReference = storage.getReference();
@@ -274,6 +329,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 
     public void saveFilesToFirestore(){
         Map<String,String> dataMap = new HashMap<>();

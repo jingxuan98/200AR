@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="splashscreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splashscreen</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

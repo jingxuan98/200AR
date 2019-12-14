@@ -1,7 +1,13 @@
 <resources>
-    <string name="app_name">ARywhere</string>
+    <string name="app_name">ARvywhere</string>
     <string name="action_settings">Settings</string>
-    <string name="ARbutton">ARButton</string>
+
+    <string name="hello">Hello</string>
+    <string name="bye">Bye</string>
+    <string name="image">Image</string>
+    <string name="model">Model</string>
+    <string name="todo">TODO</string>
+
 
     <string-array name="items">
         <item>cat.obj</item>

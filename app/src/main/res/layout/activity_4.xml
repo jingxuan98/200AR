@@ -3,13 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/buttonAR"
-        android:layout_width="120dp"
-        android:layout_height="57dp"
-        android:onClick="onClickAR"
-        android:text="@string/ARbutton"
-        android:visibility="visible" />
 
     <fragment
         android:layout_width="match_parent"
