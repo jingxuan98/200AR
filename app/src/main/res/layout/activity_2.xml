@@ -12,14 +12,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="99dp">
 
-        <ImageView
-            android:id="@+id/dog"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:src="@drawable/dog" />
-    </HorizontalScrollView>
 </FrameLayout>

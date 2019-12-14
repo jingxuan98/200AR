@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         items = res.getStringArray(R.array.items);
 
         ar = (CardView) findViewById(R.id.cardView2);
+        arimage = (CardView) findViewById(R.id.cardView);
 
         ar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +126,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        arimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                uploadFinish = false;
+
+                Intent intent = new Intent();
+                intent.setType("application/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+
+                //To start a activity that will return result
+
+                startActivityForResult(intent,PICK_FILES);
+            }
+        }
+        );
 
         ItemAdapter itemAdapter = new ItemAdapter(this, items);
         myListView.setAdapter(itemAdapter);
@@ -312,6 +329,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 
     public void saveFilesToFirestore(){
         Map<String,String> dataMap = new HashMap<>();
