@@ -61,6 +61,7 @@
         app:titleTextColor="#fff" />
 
 
+
     <include
         android:id="@+id/include"
         layout="@layout/content_main"
@@ -81,6 +82,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/round_add_white_24" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

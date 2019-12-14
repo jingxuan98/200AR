@@ -74,3 +74,4 @@ sceneform.asset('sampleData/Furniture Test/Tabel/table.fbx',
         'default',
         'sampleData/Furniture Test/Tabel/table.sfa',
         'src/main/res/raw/table')
+

@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +16,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.ar.core.Anchor;
+import com.google.ar.core.AugmentedImage;
+import com.google.ar.core.AugmentedImageDatabase;
+import com.google.ar.core.Config;
+import com.google.ar.core.Frame;
+import com.google.ar.core.Session;
+import com.google.ar.core.TrackingState;
+import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.FrameTime;
+import com.google.ar.sceneform.Scene;
+import com.google.ar.sceneform.rendering.ModelRenderable;
+
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -40,6 +54,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import java.util.Collection;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -59,12 +76,14 @@ public class MainActivity extends AppCompatActivity {
     List<Model> models = new ArrayList<>();
     private final int PICK_FILES = 71;
     public static List<Uri> uriList = new ArrayList<>();
+
     FirebaseStorage storage;
     FirebaseFirestore firestore;
     CollectionReference reference;
     //List<String> savedFiles;
     Set<String> savedFiles;
     String uriString;
+
     boolean uploadFinish = false;
 
     @Override
@@ -79,14 +98,16 @@ public class MainActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         reference = firestore.collection("main");
         savedFiles = new HashSet<String>();
-        Resources res = getResources();
 
         loadingText = (TextView) findViewById(R.id.textView) ;
         loading = (ProgressBar) findViewById(R.id.progressBar);
         loadingCard = (CardView) findViewById(R.id.loadingCard);
 
+
+
+        Resources res = getResources();
         myListView = (ListView) findViewById(R.id.myListView);
-            items = res.getStringArray(R.array.items);
+        items = res.getStringArray(R.array.items);
 
         ItemAdapter itemAdapter = new ItemAdapter(this, items);
         myListView.setAdapter(itemAdapter);
@@ -98,8 +119,12 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, Activity2.class);
                         intent.putExtra("Uri",uriString);
                         startActivity(intent);
+                    }
 
-
+                    if (position == 1){
+                        Intent intent = new Intent(MainActivity.this, Activity4.class);
+                        //   intent.putExtra("Uri",uriString);
+                        startActivity(intent);
                     }
                 }
         });
@@ -128,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void upload(){
+   public void upload(){
         final StorageReference storageReference = storage.getReference();
         int counter;
         for(int i = 0; i < models.size(); i++){
@@ -192,8 +217,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    @Override
-    protected  void onActivityResult(int requestCode, int resultCode, Intent data) {
+   @Override
+   protected  void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
 
@@ -242,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void startIntent(){
         Intent intent = new Intent(MainActivity.this, Activity2.class);
         intent.putExtra("Uri", uriString);
@@ -252,9 +278,9 @@ public class MainActivity extends AppCompatActivity {
     public void saveFilesToFirestore(){
         Map<String,String> dataMap = new HashMap<>();
         Iterator<String> it = savedFiles.iterator();
-        for(int i=0; i< savedFiles.size(); i++){
-            while(it.hasNext()){
-            dataMap.put("files"+i, it.next());
+        for(int i=0; i< savedFiles.size(); i++) {
+            while (it.hasNext()) {
+                dataMap.put("files" + i, it.next());
             }
         }
 
@@ -276,6 +302,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this, "Upload failed", Toast.LENGTH_SHORT).show();
             }
+
         });
     }
 
