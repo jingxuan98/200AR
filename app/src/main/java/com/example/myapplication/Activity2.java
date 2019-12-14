@@ -95,7 +95,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                 uri,
                                 RenderableSource.SourceType.GLB)
 
-                                .setScale(0.5f)  // Scale the original model to 50%.
+                                .setScale(0.4f)  // Scale the original model to 50%.
                                 .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                                 .build()
 
@@ -124,8 +124,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
             TransformableNode node = new TransformableNode(arFragment.getTransformationSystem());
 
             //ENABLE TO SCALE USING PINCH
-            //cat.getScaleController().setMaxScale(0.2f);
-            //cat.getScaleController().setMinScale(0.01f);
+            node.getScaleController().setMaxScale(0.4f);
+            node.getScaleController().setMinScale(0.2f);
 
             node.setRenderable(renderable); //Sets the Renderable to display for this node.
             node.setParent(anchorNode);

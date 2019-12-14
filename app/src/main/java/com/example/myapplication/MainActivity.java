@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     ListView myListView;
     String [] items;
     TextView loadingText;
-    String path;
     List<Model> models = new ArrayList<>();
     private final int PICK_FILES = 71;
     public static List<Uri> uriList = new ArrayList<>();
@@ -66,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     //List<String> savedFiles;
     Set<String> savedFiles;
     String uriString;
+    boolean uploadFinish = false;
 
     @Override
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         myListView = (ListView) findViewById(R.id.myListView);
             items = res.getStringArray(R.array.items);
 
-            ItemAdapter itemAdapter = new ItemAdapter(this, items);
+        ItemAdapter itemAdapter = new ItemAdapter(this, items);
         myListView.setAdapter(itemAdapter);
 
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -112,15 +112,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                uploadFinish = false;
+
                 Intent intent = new Intent();
                 intent.setType("application/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+
                 //To start a activity that will return result
 
                 startActivityForResult(intent,PICK_FILES);
-                //startActivityForResult(Intent.createChooser(intent,"Select your .gITF"),PICK_FILES);
-
             }
         });
 
@@ -136,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
 //            loadingText.setVisibility(View.VISIBLE);
 //            loadingCard.setVisibility(View.VISIBLE);
 
-
             final int finalI = i;
 
             storageReference.child("userData/").child(models.get(i).getName()).putFile(models.get(i).getURI()).addOnCompleteListener(new
@@ -150,13 +150,30 @@ public class MainActivity extends AppCompatActivity {
 
                                  if(task.isSuccessful()){
                                      Toast.makeText(MainActivity.this, "Upload successful 1", Toast.LENGTH_SHORT).show();
-                                     uriString = task.getResult().toString();
+
+                                     String input = task.getResult().toString();
+
+                                     boolean isFound = (input.indexOf("gltf") !=- 1 || input.indexOf("glb") != -1 )? true: false;
+
+                                     if(isFound){
+                                        uriString = task.getResult().toString();
+                                        uploadFinish = true;
+                                     }
 
                                      savedFiles.add(task.getResult().toString());
+
+                                     //start intent here
+                                     if(uploadFinish) {
+                                         startIntent();
+                                     }
+
                                      Log.d("FIREBASE", task.getResult().toString());
+
                                  }else{
+
                                      storageReference.child("userData/").child(models.get(finalI).getName()).delete();
                                      Toast.makeText(MainActivity.this, "Coudn't save" + models.get(finalI).getName(), Toast.LENGTH_SHORT).show();
+
                                  }
 
                                  if(finalI == models.size()-1){
@@ -198,20 +215,38 @@ public class MainActivity extends AppCompatActivity {
 
                             //Toast.makeText(MainActivity.this, "Added multiple files", Toast.LENGTH_SHORT).show();
                             upload();
+
+                            //start intent here
+//                            if(uploadFinish) {
+//                               startIntent();
+//                            }
+
                             Log.d("Filename", fetchModels.getName());
                         }
+
                     } else {
                         Uri uri = data.getData();
                         models.add(new Model(getFileNameFromUri(uri), uri));
                         upload();
+
+                        //start intent here
+//                        if(uploadFinish) {
+//                            startIntent();
+//                        }
+
+
                         Log.d("Uri added", getFileNameFromUri(uri));
                     }
 
-                    //To return the Uri of the selected file
-                    //uriList.add(data.getData());
-                    // path = data.getData().getPath();
                 }
         }
+    }
+
+    public void startIntent(){
+        Intent intent = new Intent(MainActivity.this, Activity2.class);
+        intent.putExtra("Uri", uriString);
+        startActivity(intent);
+
     }
 
     public void saveFilesToFirestore(){
@@ -219,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
         Iterator<String> it = savedFiles.iterator();
         for(int i=0; i< savedFiles.size(); i++){
             while(it.hasNext()){
-            dataMap.put("image"+i, it.next());
+            dataMap.put("files"+i, it.next());
             }
         }
 
