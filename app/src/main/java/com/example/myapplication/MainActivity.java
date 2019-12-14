@@ -42,6 +42,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     CollectionReference reference;
     //List<String> savedFiles;
     Set<String> savedFiles;
+    String uriString;
 
     @Override
 
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
         reference = firestore.collection("main");
-        savedFiles = new HashSet<>();
+        savedFiles = new HashSet<String>();
         Resources res = getResources();
 
         loadingText = (TextView) findViewById(R.id.textView) ;
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     if (position == 0){
                         Intent intent = new Intent(MainActivity.this, Activity2.class);
-                        //intent.putExtra("Uri",uriList.get(0).toString());
+                        intent.putExtra("Uri",uriString);
                         startActivity(intent);
 
 
@@ -147,7 +149,9 @@ public class MainActivity extends AppCompatActivity {
                              public void onComplete(@NonNull Task<Uri> task) {
 
                                  if(task.isSuccessful()){
-                                     Toast.makeText(MainActivity.this, "Upload successful 1", Toast.LENGTH_LONG).show();
+                                     Toast.makeText(MainActivity.this, "Upload successful 1", Toast.LENGTH_SHORT).show();
+                                     uriString = task.getResult().toString();
+
                                      savedFiles.add(task.getResult().toString());
                                      Log.d("FIREBASE", task.getResult().toString());
                                  }else{
@@ -212,9 +216,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void saveFilesToFirestore(){
         Map<String,String> dataMap = new HashMap<>();
+        Iterator<String> it = savedFiles.iterator();
         for(int i=0; i< savedFiles.size(); i++){
-            while(savedFiles.iterator().hasNext()){
-            dataMap.put("image"+i, savedFiles.iterator().next());
+            while(it.hasNext()){
+            dataMap.put("image"+i, it.next());
             }
         }
 
@@ -226,7 +231,6 @@ public class MainActivity extends AppCompatActivity {
 //                loadingCard.setVisibility(View.VISIBLE);
 
                 Toast.makeText(MainActivity.this, "Upload successful 2", Toast.LENGTH_SHORT).show();
-                savedFiles.clear();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

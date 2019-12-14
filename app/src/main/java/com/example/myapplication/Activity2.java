@@ -35,7 +35,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
     String path ;
 
     private static String GLTF_ASSET =
-            "https://github.com/jingxuan98/200AR/blob/master/app/sampleData/glb%20models/chic196.glb";
+            "https://firebasestorage.googleapis.com/v0/b/arywhere-2513f.appspot.com/o/userData%2Fmodel%20(1).glb?alt=media&token=655df7c0-ab31-44db-8b26-4049cc6f75bc";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_2);
 
         //Intent to get data
-        //Intent intent = getIntent();
-        //GLTF_ASSET = intent.getStringExtra("Uri");
+        Intent intent = getIntent();
+        GLTF_ASSET = intent.getStringExtra("Uri");
 
         //File file = new File(new URI(path));
         uri = Uri.parse(GLTF_ASSET);
