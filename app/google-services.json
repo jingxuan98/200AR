@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "198860751861",
+    "firebase_url": "https://arywhere-2513f.firebaseio.com",
+    "project_id": "arywhere-2513f",
+    "storage_bucket": "arywhere-2513f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198860751861:android:f0cf1cd3b06e6783ad56bc",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198860751861-48slnte3jlm8ro1o4mlodobc0a3nqgl2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "551f07231c2925ca65cd6645d7bf60ad67399adc"
+          }
+        },
+        {
+          "client_id": "198860751861-ai6rn3o4lvshssmdv45mnp499ms1t3l1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9kIjzw_dlNypKBeO7ZuI88lR8512otFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198860751861-ai6rn3o4lvshssmdv45mnp499ms1t3l1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
