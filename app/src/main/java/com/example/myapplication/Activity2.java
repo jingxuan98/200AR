@@ -35,8 +35,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
     String path ;
 
     private static String GLTF_ASSET =
-            "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf";
-
+            "https://firebasestorage.googleapis.com/v0/b/arywhere-2513f.appspot.com/o/userData%2Fmodel%20(1).glb?alt=media&token=655df7c0-ab31-44db-8b26-4049cc6f75bc";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +43,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_2);
 
         //Intent to get data
-        //Intent intent = getIntent();
-        //GLTF_ASSET = intent.getStringExtra("Uri");
+        Intent intent = getIntent();
+        GLTF_ASSET = intent.getStringExtra("Uri");
 
         //File file = new File(new URI(path));
         uri = Uri.parse(GLTF_ASSET);
@@ -94,9 +93,9 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                         RenderableSource.builder().setSource(
                                 this,
                                 uri,
-                                RenderableSource.SourceType.GLTF2)
+                                RenderableSource.SourceType.GLB)
 
-                                .setScale(0.5f)  // Scale the original model to 50%.
+                                .setScale(0.4f)  // Scale the original model to 50%.
                                 .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                                 .build()
 
@@ -125,8 +124,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
             TransformableNode node = new TransformableNode(arFragment.getTransformationSystem());
 
             //ENABLE TO SCALE USING PINCH
-            //cat.getScaleController().setMaxScale(0.2f);
-            //cat.getScaleController().setMinScale(0.01f);
+            node.getScaleController().setMaxScale(0.4f);
+            node.getScaleController().setMinScale(0.2f);
 
             node.setRenderable(renderable); //Sets the Renderable to display for this node.
             node.setParent(anchorNode);
