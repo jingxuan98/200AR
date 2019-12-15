@@ -9,7 +9,9 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.arimage);
+//        setContentView(R.layout.archi);
+
+
 
     }
 
