@@ -15,49 +15,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:weightSum="2"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.cardview.widget.CardView
-    android:id="@+id/loadingCard"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
-    app:cardBackgroundColor="#22000000"
-    app:cardCornerRadius="20dp"
-    app:layout_constraintBottom_toBottomOf="@+id/include"
-    app:layout_constraintEnd_toEndOf="@+id/include"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:visibility="invisible">
+<!--    <androidx.cardview.widget.CardView-->
+<!--    android:id="@+id/loadingCard"-->
+<!--    android:layout_width="200dp"-->
+<!--    android:layout_height="200dp"-->
+<!--    app:cardBackgroundColor="#22000000"-->
+<!--    app:cardCornerRadius="20dp"-->
+<!--    app:layout_constraintBottom_toBottomOf="@+id/include"-->
+<!--    app:layout_constraintEnd_toEndOf="@+id/include"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toTopOf="parent"-->
+<!--    tools:visibility="invisible">-->
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="-60dp"
-        android:text="Loading"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginBottom="-60dp"-->
+<!--        android:text="@string/loading"-->
+<!--        android:textColor="@color/colorPrimaryDark"-->
+<!--        android:textSize="20sp"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="74dp"
-        android:layout_height="54dp"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
-        tools:visibility="invisible" />
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        style="?android:attr/progressBarStyle"-->
+<!--        android:layout_width="74dp"-->
+<!--        android:layout_height="54dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.499"-->
+<!--        tools:visibility="invisible" />-->
 
-</androidx.cardview.widget.CardView>
+<!--</androidx.cardview.widget.CardView>-->
 
     <androidx.appcompat.widget.Toolbar
 
@@ -109,22 +110,25 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="185dp"
-        android:layout_height="185dp"
-        android:layout_margin="14dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_140sdp"
+        android:layout_margin="@dimen/_14sdp"
         app:cardBackgroundColor="#642f67"
         app:cardCornerRadius="22dp"
         app:contentPadding="12dp"
+        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="110dp"
+            android:layout_width="@dimen/_170sdp"
+            android:layout_height="@dimen/_80sdp"
             android:layout_gravity="center|top"
             android:layout_marginTop="0sp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ar4">
 
         </ImageView>
@@ -133,9 +137,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
-            android:text="AR Image"
+            android:text="@string/ar_image"
             android:textColor="#ffffff"
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:textStyle="bold">
 
         </TextView>
@@ -144,24 +148,25 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="185dp"
-        android:layout_height="185dp"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_140sdp"
         android:layout_margin="14dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
         app:cardBackgroundColor="#c62147"
         app:cardCornerRadius="22dp"
         app:contentPadding="12dp"
+        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cardView2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="180dp"
-            android:layout_height="110dp"
+            android:layout_width="@dimen/_170sdp"
+            android:layout_height="@dimen/_80sdp"
             android:layout_gravity="center|top"
             android:layout_marginTop="0sp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ar3">
 
         </ImageView>
@@ -170,9 +175,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
-            android:text="AR"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/ar"
             android:textColor="#ffffff"
-            android:textSize="32sp"
+            android:textSize="@dimen/_24sdp"
             android:textStyle="bold">
 
         </TextView>

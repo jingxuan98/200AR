@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="4"
     tools:context=".MainActivity">
 
 
@@ -21,40 +22,13 @@
         app:title="Your Library"
         app:titleTextColor="#fff" />
 
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/relativeLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@drawable/bg"-->
+<!--        tools:ignore="MissingConstraints"/>-->
 
-    <!--    <GridLayout-->
-    <!--        android:id="@+id/mainGrid"-->
-    <!--        android:layout_width="187dp"-->
-    <!--        android:layout_height="210dp"-->
-    <!--        android:layout_marginTop="24dp"-->
-    <!--        android:layout_weight="20"-->
-    <!--        android:alignmentMode="alignMargins"-->
-    <!--        android:columnCount="2"-->
-    <!--        android:columnOrderPreserved="false"-->
-    <!--        android:padding="14dp"-->
-    <!--        android:rowCount="3"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/toolbar">-->
-
-    <!--    </GridLayout>-->
-
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/fab"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="24dp"-->
-<!--        android:layout_marginBottom="24dp"-->
-<!--        android:backgroundTint="#FFFFFF"-->
-<!--        android:clickable="true"-->
-<!--        app:backgroundTint="#00FFFFFF"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="1.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="1.0"-->
-<!--        app:srcCompat="@drawable/plus" />-->
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -70,7 +44,8 @@
     </RelativeLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/uploadImage"
+        android:id="@+id/cardView2"
+        android:layout_weight="1"
         android:layout_width="185dp"
         android:layout_height="185dp"
         android:layout_margin="14dp"
@@ -108,7 +83,53 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/uploadModel"
+    android:id="@+id/uploadModel"
+    android:layout_weight="1"
+    android:layout_width="185dp"
+    android:layout_height="185dp"
+    android:layout_margin="14dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="16dp"
+    android:layout_marginBottom="32dp"
+    app:cardBackgroundColor="#c62147"
+    app:cardCornerRadius="22dp"
+    app:contentPadding="12dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/cardView2"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="0sp"
+        android:src="@drawable/model"
+        android:contentDescription="@string/todo">
+
+    </ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:text="@string/model"
+        android:textColor="#ffffff"
+        android:textSize="32sp"
+        android:textStyle="bold">
+
+    </TextView>
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/architecture"
+        android:layout_weight="1"
         android:layout_width="185dp"
         android:layout_height="185dp"
         android:layout_margin="14dp"
@@ -137,9 +158,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
-            android:text="@string/model"
+            android:text="Architecture"
             android:textColor="#ffffff"
-            android:textSize="32sp"
+            android:textSize="26sp"
             android:textStyle="bold">
 
         </TextView>
@@ -149,6 +170,7 @@
             layout="@layout/content_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
