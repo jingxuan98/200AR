@@ -105,9 +105,9 @@ public class MainActivity extends AppCompatActivity {
         reference = firestore.collection("main");
         savedFiles = new HashSet<String>();
 
-        loadingText = (TextView) findViewById(R.id.textView) ;
-        loading = (ProgressBar) findViewById(R.id.progressBar);
-        loadingCard = (CardView) findViewById(R.id.loadingCard);
+//        loadingText = (TextView) findViewById(R.id.textView) ;
+//        loading = (ProgressBar) findViewById(R.id.progressBar);
+//        loadingCard = (CardView) findViewById(R.id.loadingCard);
 
 
 
