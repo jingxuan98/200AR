@@ -25,16 +25,13 @@ import com.google.ar.sceneform.Scene;
 
 import java.util.Collection;
 
-public class Activity4 extends AppCompatActivity implements Scene.OnUpdateListener {
+public class MultiARImgUnused extends AppCompatActivity implements Scene.OnUpdateListener {
 
     CustomArFragment arFragment;
-    String selected;
 
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_4);
-
-        selected = "";
+        //super.onCreate(savedInstanceState);
+        //etContentView(R.layout.activity_4);
 
         Resources res = getResources();
 
@@ -48,7 +45,6 @@ public class Activity4 extends AppCompatActivity implements Scene.OnUpdateListen
 
     //Add that image to AR image database and AR session
     public void setupDatabase(Config config, Session session) {
-
         Bitmap cowBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cowjpg);
         Bitmap dogBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dogjpgsmall);
         AugmentedImageDatabase aid = new AugmentedImageDatabase(session);
@@ -72,7 +68,6 @@ public class Activity4 extends AppCompatActivity implements Scene.OnUpdateListen
         //Check whether the image is being tracked
         for (AugmentedImage image : images ){
             if (image.getTrackingState() == TrackingState.TRACKING){
-
                 if (image.getName().equals("dog")){
                     Anchor anchor = image.createAnchor(image.getCenterPose());
                     createModel(anchor,"dog");
@@ -114,11 +109,11 @@ public class Activity4 extends AppCompatActivity implements Scene.OnUpdateListen
         }
     }
 
-        private void placeModel (ModelRenderable modelRenderable, Anchor anchor){
-            AnchorNode anchorNode = new AnchorNode(anchor);
-            anchorNode.setRenderable(modelRenderable);
-            arFragment.getArSceneView().getScene().addChild(anchorNode);
+    private void placeModel (ModelRenderable modelRenderable, Anchor anchor){
+        AnchorNode anchorNode = new AnchorNode(anchor);
+        anchorNode.setRenderable(modelRenderable);
+        arFragment.getArSceneView().getScene().addChild(anchorNode);
 
-        }
+    }
 
 }

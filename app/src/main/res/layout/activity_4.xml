@@ -3,6 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--    <ImageView-->
+<!--        android:id="@+id/imageTest"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="300dp"-->
+<!--        android:src="@drawable/background_splashscreen"/>-->
 
     <fragment
         android:layout_width="match_parent"

@@ -164,49 +164,8 @@ public class MainActivity extends AppCompatActivity {
                 }
         });
 
-//        mainGrid = (GridLayout)findViewById(R.id.mainGrid);
-//        //set event
-//        setSingleEvent(mainGrid);
-
-      //  myListView.setAdapter(new ArrayAdapter<String>(this,R.layout.));
-
-        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                uploadFinish = false;
-
-                Intent intent = new Intent();
-                intent.setType("application/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-
-                //To start a activity that will return result
-
-                startActivityForResult(intent,PICK_FILES);
-            }
-        });
-
 
     }
-
-
-//    private void setSingleEvent(GridLayout mainGrid) {
-//        //Loop all child item of Main Grid
-//        for (int i = 0; i < mainGrid.getChildCount(); i++)
-//        {
-//            CardView cardView = (CardView)mainGrid.getChildAt(i);
-//            final int finalI = i;
-//            cardView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Toast.makeText(MainActivity.this, "Clicked at index"+ finalI, Toast.LENGTH_SHORT);
-//                }
-//            });
-//        }
-//    }
 
    public void upload(){
         final StorageReference storageReference = storage.getReference();

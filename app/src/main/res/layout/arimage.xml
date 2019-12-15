@@ -21,15 +21,6 @@
         app:title="Your Library"
         app:titleTextColor="#fff" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg"
-        tools:ignore="MissingConstraints">
-
-    </RelativeLayout>
-
 
     <!--    <GridLayout-->
     <!--        android:id="@+id/mainGrid"-->
@@ -48,25 +39,38 @@
 
     <!--    </GridLayout>-->
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="#FFFFFF"
-        android:clickable="true"
-        app:backgroundTint="#00FFFFFF"
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fab"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:layout_marginBottom="24dp"-->
+<!--        android:backgroundTint="#FFFFFF"-->
+<!--        android:clickable="true"-->
+<!--        app:backgroundTint="#00FFFFFF"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="1.0"-->
+<!--        app:srcCompat="@drawable/plus" />-->
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/plus" />
+        tools:ignore="MissingConstraints">
+
+    </RelativeLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/uploadImage"
         android:layout_width="185dp"
         android:layout_height="185dp"
         android:layout_margin="14dp"
@@ -76,6 +80,8 @@
         app:contentPadding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -83,8 +89,8 @@
             android:layout_height="100dp"
             android:layout_gravity="center|top"
             android:layout_marginTop="10sp"
-            android:src="@drawable/image"
-            android:contentDescription="@string/todo">
+            android:contentDescription="@string/todo"
+            android:src="@drawable/image">
 
         </ImageView>
 
@@ -112,7 +118,8 @@
         app:cardCornerRadius="22dp"
         app:contentPadding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cardView2"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -121,8 +128,8 @@
             android:layout_height="120dp"
             android:layout_gravity="center|top"
             android:layout_marginTop="0sp"
-            android:src="@drawable/model"
-            android:contentDescription="@string/todo">
+            android:contentDescription="@string/todo"
+            android:src="@drawable/model">
 
         </ImageView>
 
