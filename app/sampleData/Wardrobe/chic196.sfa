@@ -1,0 +1,236 @@
+{
+  materials: [
+    {
+      name: 'Metal_Seamed',
+      parameters: [
+        {
+          baseColor: 'Metal_Seamed',
+        },
+        {
+          baseColorTint: [
+            0.46274500000000002,
+            0.466667,
+            0.44705899999999998,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+    {
+      name: 'chic196_handle_horizontal1',
+      parameters: [
+        {
+          baseColor: 'chic196_handle_horizontal1',
+        },
+        {
+          baseColorTint: [
+            0.34902,
+            0.34117599999999998,
+            0.31372499999999998,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+    {
+      name: 'chic196_top',
+      parameters: [
+        {
+          baseColor: 'chic196_top',
+        },
+        {
+          baseColorTint: [
+            0.63137299999999996,
+            0.52549000000000001,
+            0.39215699999999998,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+    {
+      name: 'chic196_front',
+      parameters: [
+        {
+          baseColor: 'chic196_front',
+        },
+        {
+          baseColorTint: [
+            0.57647099999999996,
+            0.48627500000000001,
+            0.37254900000000002,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+    {
+      name: 'chic196_sides',
+      parameters: [
+        {
+          baseColor: 'chic196_sides',
+        },
+        {
+          baseColorTint: [
+            0.63921600000000001,
+            0.53333299999999995,
+            0.40000000000000002,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+    {
+      name: 'chic196_bottom_plywood1',
+      parameters: [
+        {
+          baseColor: 'chic196_bottom_plywood1',
+        },
+        {
+          baseColorTint: [
+            0.64313699999999996,
+            0.48235299999999998,
+            0.36470599999999997,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+    {
+      name: 'chic196_back_plywood',
+      parameters: [
+        {
+          baseColor: 'chic196_back_plywood',
+        },
+        {
+          baseColorTint: [
+            0.611765,
+            0.45490199999999997,
+            0.34509800000000002,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampleData/Wardrobe/chic196.obj',
+    name: 'chic196',
+    recenter: 'root',
+    scale: 0.0020699999999999998,
+  },
+  samplers: [
+    {
+      file: 'sampleData/Wardrobe\\chic196_front.jpg',
+      name: 'chic196_front',
+      pipeline_name: 'chic196_front.jpg',
+    },
+    {
+      file: 'sampleData/Wardrobe\\chic196_top.jpg',
+      name: 'chic196_top',
+      pipeline_name: 'chic196_top.jpg',
+    },
+    {
+      file: 'sampleData/Wardrobe\\Metal_Seamed.jpg',
+      name: 'Metal_Seamed',
+      pipeline_name: 'Metal_Seamed.jpg',
+    },
+    {
+      file: 'sampleData/Wardrobe\\chic196_back_plywood.jpg',
+      name: 'chic196_back_plywood',
+      pipeline_name: 'chic196_back_plywood.jpg',
+    },
+    {
+      file: 'sampleData/Wardrobe\\chic196_sides.jpg',
+      name: 'chic196_sides',
+      pipeline_name: 'chic196_sides.jpg',
+    },
+    {
+      file: 'sampleData/Wardrobe\\chic196_handle_horizontal1.jpg',
+      name: 'chic196_handle_horizontal1',
+      pipeline_name: 'chic196_handle_horizontal1.jpg',
+    },
+    {
+      file: 'sampleData/Wardrobe\\chic196_bottom_plywood1.jpg',
+      name: 'chic196_bottom_plywood1',
+      pipeline_name: 'chic196_bottom_plywood1.jpg',
+    },
+  ],
+  version: '0.54:2',
+}

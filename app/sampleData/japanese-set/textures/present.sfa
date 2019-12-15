@@ -1,0 +1,126 @@
+{
+  animations: [
+    {
+      clips: [
+        {
+          name: 'Take 001',
+          runtime_name: 'present',
+        },
+      ],
+      path: 'sampleData/japanese-set/textures/present.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'Temple',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'Temple_texture',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Torii',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'Torii_Diffuse',
+        },
+        {
+          normalMap: 'Torii_normal',
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Color',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampleData/japanese-set/textures/present.fbx',
+    name: 'present',
+    recenter: 'root',
+  },
+  samplers: [
+    {
+      file: 'sampleData/japanese-set/textures\\Temple_texture.jpg',
+      name: 'Temple_texture',
+      pipeline_name: 'serious_game\\Model\\SkyStage\\Texture\\Temple_texture.jpg',
+    },
+    {
+      file: 'sampleData/japanese-set/textures\\Torii_Diffuse.jpg',
+      name: 'Torii_Diffuse',
+      pipeline_name: 'serious_game\\Model\\SkyStage\\Texture\\Torii_Diffuse.jpg',
+    },
+    {
+      file: 'sampleData/japanese-set/textures\\Torii_normal.jpg',
+      name: 'Torii_normal',
+      params: {
+        usage_type: 'Normal',
+      },
+      pipeline_name: '..\\..\\Tanaka_Rika\\Desktop\\serious_game\\Model\\SkyStage\\Texture\\Torii_normal.jpg',
+    },
+  ],
+  version: '0.54:2',
+}

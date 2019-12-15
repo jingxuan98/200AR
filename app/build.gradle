@@ -79,3 +79,19 @@ sceneform.asset('sampleData/Furniture Test/Tabel/table.fbx',
         'sampleData/Furniture Test/Tabel/table.sfa',
         'src/main/res/raw/table')
 
+
+
+sceneform.asset('sampleData/Wardrobe/chic196.obj',
+        'default',
+        'sampleData/Wardrobe/chic196.sfa',
+        'src/main/res/raw/wardrobe')
+
+sceneform.asset('sampleData/lowliberty/textures/LibertyStatue/LibertStatue.obj',
+        'default',
+        'sampleData/lowliberty/textures/LibertyStatue/LibertStatue.sfa',
+        'src/main/res/raw/libertystatue')
+
+sceneform.asset('sampleData/japanese-set/textures/present.fbx',
+        'default',
+        'sampleData/japanese-set/textures/present.sfa',
+        'src/main/res/raw/japaneseset')
