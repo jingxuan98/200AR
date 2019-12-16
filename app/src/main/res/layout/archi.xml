@@ -10,26 +10,28 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/furniture"
-        android:layout_width="185dp"
-        android:layout_height="185dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="92dp"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_140sdp"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_120sdp"
+        android:layout_weight="1"
         app:cardBackgroundColor="#c62147"
         app:cardCornerRadius="22dp"
         app:contentPadding="12dp"
-        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/historical"
-        app:layout_constraintVertical_bias="0.926" >
+        app:layout_constraintStart_toEndOf="@+id/architecture"
+        app:layout_constraintTop_toBottomOf="@+id/historical">
 
         <ImageView
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
             android:layout_gravity="center|top"
             android:layout_marginTop="5sp"
-            android:src="@drawable/furniture"
-            android:contentDescription="@string/todo">
+            android:contentDescription="@string/todo"
+            android:src="@drawable/furniture">
 
         </ImageView>
 
@@ -49,26 +51,30 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/animal"
-        android:layout_width="185dp"
-        android:layout_height="185dp"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_140sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_120sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_200sdp"
+        android:layout_weight="1"
         app:cardBackgroundColor="#c62147"
         app:cardCornerRadius="22dp"
         app:contentPadding="12dp"
-        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/historical"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294" >
+        app:layout_constraintVertical_bias="0.294">
 
         <ImageView
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
             android:layout_gravity="center|top"
             android:layout_marginTop="5sp"
-            android:src="@drawable/dog"
-            android:contentDescription="@string/todo">
+            android:contentDescription="@string/todo"
+            android:src="@drawable/dog">
 
         </ImageView>
 
@@ -88,25 +94,30 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/historical"
-        android:layout_width="185dp"
-        android:layout_height="185dp"
-        android:layout_marginTop="160dp"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_140sdp"
+        android:layout_marginStart="@dimen/_130sdp"
+        android:layout_marginTop="@dimen/_120sdp"
+        android:layout_marginEnd="@dimen/_6sdp"
+        android:layout_marginBottom="@dimen/_200sdp"
+        android:layout_weight="1"
         app:cardBackgroundColor="#642f67"
         app:cardCornerRadius="22dp"
         app:contentPadding="12dp"
-        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.293">
 
         <ImageView
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
             android:layout_gravity="center|top"
             android:layout_marginTop="5sp"
-            android:src="@drawable/statue"
-            android:contentDescription="@string/todo">
+            android:contentDescription="@string/todo"
+            android:src="@drawable/statue">
 
         </ImageView>
 
@@ -126,24 +137,28 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/architecture"
-        android:layout_width="185dp"
-        android:layout_height="185dp"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_140sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_120sdp"
+        android:layout_weight="1"
         app:cardBackgroundColor="#642f67"
         app:cardCornerRadius="22dp"
         app:contentPadding="12dp"
-        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/furniture"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animal" >
+        app:layout_constraintTop_toBottomOf="@+id/animal">
 
         <ImageView
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
             android:layout_gravity="center|top"
             android:layout_marginTop="5sp"
-            android:src="@drawable/architecture"
-            android:contentDescription="@string/todo">
+            android:contentDescription="@string/todo"
+            android:src="@drawable/architecture">
 
         </ImageView>
 

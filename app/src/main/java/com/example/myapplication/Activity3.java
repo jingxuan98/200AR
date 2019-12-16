@@ -13,8 +13,6 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
 
     CardView architecture, furniture, animal, historical;
 
-
-
     //Bitmap bitmap;
 
     @Override
@@ -82,8 +80,6 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
             }
 
         });
-
-
 
 
     }

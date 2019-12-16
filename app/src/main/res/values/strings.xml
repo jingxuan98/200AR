@@ -6,10 +6,16 @@
     <string name="bye">Bye</string>
     <string name="image">Image</string>
     <string name="model">Model</string>
-    <string name="todo">TODO</string>
     <string name="loading">Loading</string>
     <string name="ar">AR</string>
     <string name="ar_image">AR Image</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="password">Password</string>
+    <string name="log_in_sign_up_via_google">Log In / Sign Up via Google</string>
+    <string name="log_in">Log In</string>
+    <string name="log_in_sign_up_via_facebook">Log In / Sign Up via Facebook</string>
+    <string name="email">Email</string>
+    <string name="todo">TODO</string>
 
     <string-array name="items">
         <item>cat.obj</item>

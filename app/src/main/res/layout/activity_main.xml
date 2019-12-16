@@ -110,13 +110,15 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_140sdp"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_130sdp"
         android:layout_margin="@dimen/_14sdp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="0dp"
+        android:layout_weight="1"
         app:cardBackgroundColor="#642f67"
         app:cardCornerRadius="22dp"
         app:contentPadding="12dp"
-        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -129,9 +131,7 @@
             android:layout_gravity="center|top"
             android:layout_marginTop="0sp"
             android:contentDescription="@string/todo"
-            android:src="@drawable/ar4">
-
-        </ImageView>
+            android:src="@drawable/ar4" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -148,13 +148,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_140sdp"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_130sdp"
         android:layout_margin="14dp"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
         app:cardBackgroundColor="#c62147"
         app:cardCornerRadius="22dp"
         app:contentPadding="12dp"
-        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cardView2"
         app:layout_constraintHorizontal_bias="0.0"
