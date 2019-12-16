@@ -25,31 +25,29 @@ import com.google.ar.sceneform.Scene;
 
 import java.util.Collection;
 
-public class MultiARImgUnused extends AppCompatActivity implements Scene.OnUpdateListener {
+public class Furniture extends AppCompatActivity implements Scene.OnUpdateListener {
 
     CustomArFragment arFragment;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_4);
+        setContentView(R.layout.furnitures);
 
         Resources res = getResources();
 
 
         //To refer to the AR fragment in AR Fragment
 
-        arFragment = (CustomArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+        arFragment = (CustomArFragment) getSupportFragmentManager().findFragmentById(R.id.furniturefragment);
         arFragment.getArSceneView().getScene().addOnUpdateListener(this); //When got update to scene, the update function will call
 
     }
 
     //Add that image to AR image database and AR session
     public void setupDatabase(Config config, Session session) {
-        //Bitmap cowBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cowjpg);
-        Bitmap dogBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dogjpgsmall);
+        Bitmap foxBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.furnitureimg);
         AugmentedImageDatabase aid = new AugmentedImageDatabase(session);
-        //aid.addImage("cow", cowBitmap);
-        aid.addImage("dog", dogBitmap);
+        aid.addImage("dog", foxBitmap);
         config.setAugmentedImageDatabase(aid);
     }
 
@@ -70,50 +68,26 @@ public class MultiARImgUnused extends AppCompatActivity implements Scene.OnUpdat
             if (image.getTrackingState() == TrackingState.TRACKING){
                 if (image.getName().equals("dog")){
                     Anchor anchor = image.createAnchor(image.getCenterPose());
-                    createModel(anchor,"dog");
-                }
-
-                if (image.getName().equals("cow")){
-                    Anchor anchor = image.createAnchor(image.getCenterPose());
-                    createModel(anchor,"cow");
+                    createModel(anchor);
                 }
             }
         }
     }
 
-    private void createModel(Anchor anchor, String model) {
+    private void createModel(Anchor anchor) {
 
-        switch (model) {
-
-            case "dog":
-
-                ModelRenderable.builder()
-                        .setSource(this, R.raw.dog
-                                //Uri.parse("dog.sfb")
-                        )
-                        .build()
-                        .thenAccept(modelRenderable -> placeModel(modelRenderable, anchor));
-
-                break;
-
-            case "cow":
-
-                ModelRenderable.builder()
-                        .setSource(this, R.raw.cow
-                                //Uri.parse("dog.sfb")
-                        )
-                        .build()
-                        .thenAccept(modelRenderable -> placeModel(modelRenderable, anchor));
-
-                break;
-        }
+        ModelRenderable.builder()
+                .setSource(this, R.raw.wardrobe
+                        //Uri.parse("dog.sfb")
+                )
+                .build()
+                .thenAccept(modelRenderable -> placeModel(modelRenderable, anchor));
     }
 
-    private void placeModel (ModelRenderable modelRenderable, Anchor anchor){
+    private void placeModel(ModelRenderable modelRenderable, Anchor anchor) {
         AnchorNode anchorNode = new AnchorNode(anchor);
         anchorNode.setRenderable(modelRenderable);
         arFragment.getArSceneView().getScene().addChild(anchorNode);
 
     }
-
 }

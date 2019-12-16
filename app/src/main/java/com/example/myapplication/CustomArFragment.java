@@ -15,7 +15,8 @@ public class CustomArFragment extends ArFragment{
 
         this.getArSceneView().setupSession(session);
 
-        ((Activity4) getActivity()).setupDatabase(config, session);
+        ((Animal) getActivity()).setupDatabase(config, session);
+        //((Furniture) getActivity()).setupDatabase(config, session);
 
         return config;
     }

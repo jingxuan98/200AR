@@ -1,11 +1,8 @@
 package com.example.myapplication;
 
-import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,18 +12,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.ar.core.Anchor;
-import com.google.ar.core.AugmentedImage;
-import com.google.ar.core.AugmentedImageDatabase;
-import com.google.ar.core.Config;
-import com.google.ar.core.Frame;
-import com.google.ar.core.Session;
-import com.google.ar.core.TrackingState;
-import com.google.ar.sceneform.AnchorNode;
-import com.google.ar.sceneform.FrameTime;
-import com.google.ar.sceneform.Scene;
-import com.google.ar.sceneform.rendering.ModelRenderable;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -36,7 +21,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -47,7 +31,6 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -55,8 +38,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
-import java.util.Collection;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -157,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (position == 1){
-                        Intent intent = new Intent(MainActivity.this, Activity4.class);
+                        Intent intent = new Intent(MainActivity.this, Animal.class);
                         //   intent.putExtra("Uri",uriString);
                         startActivity(intent);
                     }
@@ -370,3 +351,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+

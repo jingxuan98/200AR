@@ -49,13 +49,13 @@ public class ARImgUploadUnused extends AppCompatActivity implements View.OnClick
         storage = FirebaseStorage.getInstance();
 
         uploadModel = (CardView) findViewById(R.id.uploadModel);
-        uploadImage = (CardView) findViewById(R.id.uploadImage);
+        //uploadImage = (CardView) findViewById(R.id.uploadImage);
 
         uploadModel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(ARImgUploadUnused.this, Activity4.class);
+                Intent intent = new Intent(ARImgUploadUnused.this, Animal.class);
                 //intent.putExtra("Uri", modelUri);
                 //intent.putExtra("Image",bitmap);
                 startActivity(intent);
@@ -109,7 +109,7 @@ public class ARImgUploadUnused extends AppCompatActivity implements View.OnClick
     }
 
     public void startIntent(){
-        Intent intent = new Intent(ARImgUploadUnused.this, Activity4.class);
+        Intent intent = new Intent(ARImgUploadUnused.this, Animal.class);
         //intent.putExtra("Uri", modelUri);
         //intent.putExtra("Image",bitmap);
         startActivity(intent);

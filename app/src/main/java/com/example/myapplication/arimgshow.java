@@ -25,7 +25,7 @@ import com.google.ar.sceneform.Scene;
 
 import java.util.Collection;
 
-public class Activity4 extends AppCompatActivity implements Scene.OnUpdateListener {
+public class arimgshow extends AppCompatActivity implements Scene.OnUpdateListener {
 
     CustomArFragment arFragment;
     String selected;
@@ -49,10 +49,10 @@ public class Activity4 extends AppCompatActivity implements Scene.OnUpdateListen
     //Add that image to AR image database and AR session
     public void setupDatabase(Config config, Session session) {
 
-        Bitmap cowBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cowjpg);
+       // Bitmap cowBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cowjpg);
         Bitmap dogBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dogjpgsmall);
         AugmentedImageDatabase aid = new AugmentedImageDatabase(session);
-        aid.addImage("cow", cowBitmap);
+        //aid.addImage("cow", cowBitmap);
         aid.addImage("dog", dogBitmap);
         config.setAugmentedImageDatabase(aid);
     }
@@ -114,11 +114,11 @@ public class Activity4 extends AppCompatActivity implements Scene.OnUpdateListen
         }
     }
 
-        private void placeModel (ModelRenderable modelRenderable, Anchor anchor){
-            AnchorNode anchorNode = new AnchorNode(anchor);
-            anchorNode.setRenderable(modelRenderable);
-            arFragment.getArSceneView().getScene().addChild(anchorNode);
+    private void placeModel (ModelRenderable modelRenderable, Anchor anchor){
+        AnchorNode anchorNode = new AnchorNode(anchor);
+        anchorNode.setRenderable(modelRenderable);
+        arFragment.getArSceneView().getScene().addChild(anchorNode);
 
-        }
+    }
 
 }
