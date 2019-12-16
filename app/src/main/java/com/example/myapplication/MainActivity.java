@@ -7,12 +7,15 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -59,14 +62,10 @@ public class MainActivity extends AppCompatActivity {
     private final int PICK_FILES = 71;
     public static List<Uri> uriList = new ArrayList<>();
     CardView arimage,ar;
-
-    GridLayout mainGrid;
-
-
+    private FirebaseAuth mAuth;
     FirebaseStorage storage;
     FirebaseFirestore firestore;
     CollectionReference reference;
-    //List<String> savedFiles;
     Set<String> savedFiles;
     String uriString;
 
@@ -85,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         reference = firestore.collection("main");
         savedFiles = new HashSet<String>();
+        mAuth = FirebaseAuth.getInstance();
 
 //        loadingText = (TextView) findViewById(R.id.textView) ;
 //        loading = (ProgressBar) findViewById(R.id.progressBar);
@@ -93,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         Resources res = getResources();
-        myListView = (ListView) findViewById(R.id.myListView);
-        items = res.getStringArray(R.array.items);
 
         ar = (CardView) findViewById(R.id.cardView2);
         arimage = (CardView) findViewById(R.id.cardView);
@@ -104,6 +102,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, Activity3.class);
                 startActivity(myIntent);
+            }
+        });
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                LoginManager.getInstance().logOut();
+
+                updateUI();
             }
         });
 
@@ -124,27 +133,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         );
-
-        ItemAdapter itemAdapter = new ItemAdapter(this, items);
-        myListView.setAdapter(itemAdapter);
-
-        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if (position == 0){
-                        Intent intent = new Intent(MainActivity.this, Activity2.class);
-                        intent.putExtra("Uri",uriString);
-                        startActivity(intent);
-                    }
-
-                    if (position == 1){
-                        Intent intent = new Intent(MainActivity.this, Animal.class);
-                        //   intent.putExtra("Uri",uriString);
-                        startActivity(intent);
-                    }
-                }
-        });
-
 
     }
 
@@ -210,6 +198,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if(currentUser == null) {
+            updateUI();
+        }
+    }
+
+    private void updateUI(){
+        Toast.makeText(MainActivity.this,"You're logged out",Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(MainActivity.this,Login.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 
    @Override
@@ -233,13 +240,7 @@ public class MainActivity extends AppCompatActivity {
 
                             models.add(fetchModels);
 
-                            //Toast.makeText(MainActivity.this, "Added multiple files", Toast.LENGTH_SHORT).show();
                             upload();
-
-                            //start intent here
-//                            if(uploadFinish) {
-//                               startIntent();
-//                            }
 
                             Log.d("Filename", fetchModels.getName());
                         }
@@ -248,11 +249,6 @@ public class MainActivity extends AppCompatActivity {
                         Uri uri = data.getData();
                         models.add(new Model(getFileNameFromUri(uri), uri));
                         upload();
-
-                        //start intent here
-//                        if(uploadFinish) {
-//                            startIntent();
-//                        }
 
 
                         Log.d("Uri added", getFileNameFromUri(uri));

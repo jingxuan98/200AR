@@ -96,8 +96,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="#642f67"
         android:clickable="true"
+        android:visibility="visible"
         app:backgroundTint="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,8 +106,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/plus"
-        android:visibility="invisible"/>
+        app:srcCompat="@drawable/signout" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
