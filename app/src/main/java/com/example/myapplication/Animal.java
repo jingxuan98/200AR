@@ -120,7 +120,7 @@ public class Animal extends AppCompatActivity implements Scene.OnUpdateListener 
             case "furniture":
 
                 ModelRenderable.builder()
-                        .setSource(this, R.raw.wardrobe
+                        .setSource(this, R.raw.furniturecloset
                                 //Uri.parse("dog.sfb")
                         )
                         .build()
