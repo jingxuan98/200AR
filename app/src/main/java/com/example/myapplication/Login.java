@@ -2,9 +2,11 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -49,7 +51,8 @@ public class Login extends AppCompatActivity {
     private static final String TAG = "FACELOG";
     private CallbackManager mCallbackManager;
     private FirebaseAuth mAuth;
-    Button facebookbtn,googlebtn;
+    Button facebookbtn,googlebtn,signUp,signInBtn;
+    EditText txtPassword,txtEmail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -106,6 +109,62 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        signUp = (Button) findViewById(R.id.signup);
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this,Signup.class);
+                startActivity(intent);
+            }
+        });
+
+        txtEmail = (EditText) findViewById(R.id.mail);
+        txtPassword = (EditText) findViewById(R.id.pword);
+
+        signInBtn = (Button) findViewById(R.id.login);
+
+        signInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = txtEmail.getText().toString().trim();
+                String password = txtPassword.getText().toString().trim();
+
+                if(TextUtils.isEmpty(email)){
+                    Toast.makeText(Login.this,"Please Enter Email",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(password)){
+                    Toast.makeText(Login.this,"Please Enter Password",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "signInWithEmail:success");
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    updateUI();
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                    Toast.makeText(Login.this, "Login Fail or User not Available",
+                                            Toast.LENGTH_SHORT).show();
+
+                                }
+
+                                // ...
+                            }
+                        });
+
+            }
+        });
+
+
+
     }
 
     private void signIn(){
@@ -114,9 +173,20 @@ public class Login extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(getApplicationContext(),Login.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if(currentUser != null) {
@@ -167,6 +237,9 @@ public class Login extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Pass the activity result back to the Facebook SDK
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -180,9 +253,6 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(this, "Fail sign In Google Account", Toast.LENGTH_SHORT).show();
                 firebaseAuthWithGoogle(null);
             }
-
-            // Pass the activity result back to the Facebook SDK
-            mCallbackManager.onActivityResult(requestCode, resultCode, data);
 
 
         }
@@ -212,26 +282,5 @@ public class Login extends AppCompatActivity {
                     }
                 });
         }
-
-
-
-
-
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        IdpResponse response = IdpResponse.fromResultIntent(data);
-//        if(requestCode == MY_REQUEST_CODE)
-//        {
-//            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//
-//            Toast.makeText(this, ""+user.getEmail(),Toast.LENGTH_SHORT).show();
-//
-//        }else{
-//            Toast.makeText(this, ""+ response.getError().getMessage() ,Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
 }

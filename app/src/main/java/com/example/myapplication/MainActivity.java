@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         System.out.println("onCreate() called");
+
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
@@ -134,6 +135,16 @@ public class MainActivity extends AppCompatActivity {
         }
         );
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(getApplicationContext(),Login.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        finish();
     }
 
    public void upload(){
@@ -210,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(){
+
         Toast.makeText(MainActivity.this,"You're logged out",Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(MainActivity.this,Login.class);
