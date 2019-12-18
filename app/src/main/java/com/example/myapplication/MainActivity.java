@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
                 LoginManager.getInstance().logOut();
 
                 updateUI();
+
+
             }
         });
 
@@ -168,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                              public void onComplete(@NonNull Task<Uri> task) {
 
                                  if(task.isSuccessful()){
-                                     Toast.makeText(MainActivity.this, "Upload successful 1", Toast.LENGTH_SHORT).show();
+                                     Toast.makeText(MainActivity.this, "Preparing AR scene", Toast.LENGTH_SHORT).show();
 
                                      String input = task.getResult().toString();
 
@@ -201,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                              }
                          });
                      }else{
-                         Toast.makeText(MainActivity.this, "Coudn't save file", Toast.LENGTH_SHORT).show();
+                         Toast.makeText(MainActivity.this, "Coudn't upload file", Toast.LENGTH_SHORT).show();
                      }
                  }
              }
@@ -237,6 +239,8 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
 
             case PICK_FILES:
+
+                Toast.makeText(MainActivity.this, "Adding Model and preparing AR scene....", Toast.LENGTH_SHORT).show();
 
                 if (resultCode == RESULT_OK && data != null) {
 
@@ -295,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
 //                loadingText.setVisibility(View.VISIBLE);
 //                loadingCard.setVisibility(View.VISIBLE);
 
-                Toast.makeText(MainActivity.this, "Upload successful 2", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Rendering Model", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

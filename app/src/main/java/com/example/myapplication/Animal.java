@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,6 +40,8 @@ public class Animal extends AppCompatActivity implements Scene.OnUpdateListener 
 
         Intent intent = getIntent();
         selected = intent.getStringExtra("Img");
+
+        Toast.makeText(Animal.this, "Setting Up AR Image Detector", Toast.LENGTH_SHORT).show();
 
 
         //To refer to the AR fragment in AR Fragment

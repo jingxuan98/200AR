@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.view.View;
+import android.widget.Toast;
 
 
 public class Activity3 extends AppCompatActivity implements View.OnClickListener{
@@ -30,6 +31,7 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onClick(View v) {
+                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(Activity3.this, Animal.class);
                 intent.putExtra("Img","architecture");
@@ -43,6 +45,8 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onClick(View v) {
+                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_SHORT).show();
+
 
                 Intent intent = new Intent(Activity3.this, Animal.class);
                 intent.putExtra("Img", "furniture");
@@ -57,6 +61,8 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onClick(View v) {
+                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_SHORT).show();
+
 
                 Intent intent = new Intent(Activity3.this, Animal.class);
                 intent.putExtra("Img", "historical");
@@ -71,6 +77,8 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onClick(View v) {
+                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_SHORT).show();
+
 
                 Intent intent = new Intent(Activity3.this, Animal.class);
                 intent.putExtra("Img", "animal");

@@ -102,3 +102,8 @@ sceneform.asset('sampleData/japanese-set/textures/present.fbx',
         'default',
         'sampleData/japanese-set/textures/present.sfa',
         'src/main/res/raw/japaneseset')
+
+sceneform.asset('sampleData/Furniture 1812/Armoire.obj',
+        'default',
+        'sampleData/Furniture 1812/Armoire.sfa',
+        'src/main/res/raw/furniturecloset')

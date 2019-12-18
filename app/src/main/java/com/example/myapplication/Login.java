@@ -129,6 +129,8 @@ public class Login extends AppCompatActivity {
                 String email = txtEmail.getText().toString().trim();
                 String password = txtPassword.getText().toString().trim();
 
+                Toast.makeText(Login.this, "Logging In .....", Toast.LENGTH_SHORT).show();
+
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(Login.this,"Please Enter Email",Toast.LENGTH_SHORT).show();
                     return;
@@ -175,11 +177,8 @@ public class Login extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent intent = new Intent(getApplicationContext(),Login.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("EXIT", true);
-        startActivity(intent);
-        finish();
+      android.os.Process.killProcess(android.os.Process.myPid());
+      System.exit(1);
     }
 
     @Override
