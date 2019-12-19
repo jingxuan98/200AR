@@ -63,7 +63,7 @@
     file: 'sampleData/Furniture 1812/Armoire.obj',
     name: 'Armoire',
     recenter: 'root',
-    scale: 3.9999999999999998e-06,
+    scale: 0.9999999999999998e-06,
   },
   version: '0.54:2',
 }

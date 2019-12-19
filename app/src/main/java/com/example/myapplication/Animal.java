@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.ar.core.Anchor;
 import com.google.ar.core.AugmentedImageDatabase;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -41,7 +42,7 @@ public class Animal extends AppCompatActivity implements Scene.OnUpdateListener 
         Intent intent = getIntent();
         selected = intent.getStringExtra("Img");
 
-        Toast.makeText(Animal.this, "Setting Up AR Image Detector", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(Animal.this, "Setting Up AR Image Detector", Toast.LENGTH_SHORT).show();
 
 
         //To refer to the AR fragment in AR Fragment
@@ -57,6 +58,9 @@ public class Animal extends AppCompatActivity implements Scene.OnUpdateListener 
         Bitmap furnitureBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.furnitureimg);
         Bitmap architectureBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.architectureimg);
         Bitmap historicalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.historicalimg);
+
+        Toast.makeText(Animal.this, "Setting Up AR Image Detector", Toast.LENGTH_SHORT).show();
+
 
         AugmentedImageDatabase aid = new AugmentedImageDatabase(session);
 
@@ -149,6 +153,7 @@ public class Animal extends AppCompatActivity implements Scene.OnUpdateListener 
 
     private void placeModel(ModelRenderable modelRenderable, Anchor anchor) {
         AnchorNode anchorNode = new AnchorNode(anchor);
+        anchorNode.setLocalScale(new Vector3(0.3f, 0.3f, 0.3f));
         anchorNode.setRenderable(modelRenderable);
         arFragment.getArSceneView().getScene().addChild(anchorNode);
 

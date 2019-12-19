@@ -55,10 +55,12 @@
         <activity android:name=".Animal"></activity>
         <activity android:name=".Activity2"></activity>
         <activity android:name=".Activity3"></activity>
-        <activity android:name=".Login"></activity>
+        <activity android:name=".Login" android:screenOrientation="portrait"
+        android:noHistory="true"></activity>
         <activity android:name=".Signup"></activity>
         <activity
             android:name=".splashScreen"
+            android:noHistory="true"
             android:label="@string/app_name"
             android:theme="@style/splashscreen">
             <intent-filter>
