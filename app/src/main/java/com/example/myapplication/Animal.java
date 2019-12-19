@@ -42,14 +42,10 @@ public class Animal extends AppCompatActivity implements Scene.OnUpdateListener 
         Intent intent = getIntent();
         selected = intent.getStringExtra("Img");
 
-       // Toast.makeText(Animal.this, "Setting Up AR Image Detector", Toast.LENGTH_SHORT).show();
-
-
         //To refer to the AR fragment in AR Fragment
 
         arFragment = (CustomArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
         arFragment.getArSceneView().getScene().addOnUpdateListener(this); //When got update to scene, the update function will call
-
     }
 
     //Add that image to AR image database and AR session
@@ -69,6 +65,9 @@ public class Animal extends AppCompatActivity implements Scene.OnUpdateListener 
         aid.addImage("architecture", architectureBitmap);
         aid.addImage("historical", historicalBitmap);
         config.setAugmentedImageDatabase(aid);
+
+        Toast.makeText(Animal.this, "Setting Up AR Image Detector", Toast.LENGTH_LONG).show();
+
     }
 
     public void onClickAR(View view) {

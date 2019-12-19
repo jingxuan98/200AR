@@ -142,11 +142,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent intent = new Intent(getApplicationContext(),Login.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("EXIT", true);
-        startActivity(intent);
-        finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 
    public void upload(){

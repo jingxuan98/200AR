@@ -31,9 +31,9 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(Activity3.this, Animal.class);
+                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_LONG).show();
                 intent.putExtra("Img","architecture");
                 //intent.putExtra("Image",bitmap);
                 startActivity(intent);
@@ -45,10 +45,9 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_SHORT).show();
-
 
                 Intent intent = new Intent(Activity3.this, Animal.class);
+                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_LONG).show();
                 intent.putExtra("Img", "furniture");
                 //intent.putExtra("Image",bitmap);
                 startActivity(intent);
@@ -61,10 +60,9 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_SHORT).show();
-
 
                 Intent intent = new Intent(Activity3.this, Animal.class);
+                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_LONG).show();
                 intent.putExtra("Img", "historical");
                 //intent.putExtra("Image",bitmap);
                 startActivity(intent);
@@ -77,11 +75,10 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(Activity3.this, Animal.class);
+                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_LONG).show();
                 intent.putExtra("Img", "animal");
                 //intent.putExtra("Image",bitmap);
-                Toast.makeText(Activity3.this, "Preparing AR scene", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
 
             }

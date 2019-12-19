@@ -53,7 +53,7 @@
         //If your app strictly requires the device to be ARCore enabled, then set required = true or if AR is not a primary feature or you have handled compatibility for non-compatible devices you can set required = false.
         <meta-data android:name="com.google.ar.core" android:value="optional" />
         <activity android:name=".Animal"></activity>
-        <activity android:name=".Activity2"></activity>
+        <activity android:name=".Activity2" android:noHistory="true"></activity>
         <activity android:name=".Activity3"></activity>
         <activity android:name=".Login" android:screenOrientation="portrait"
         android:noHistory="true"></activity>

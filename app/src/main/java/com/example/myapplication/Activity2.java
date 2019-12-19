@@ -95,7 +95,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                 uri,
                                 RenderableSource.SourceType.GLB)
 
-                                .setScale(0.5f)  // Scale the original model to 50%.
+                                .setScale(0.3f)  // Scale the original model to 50%.
                                 .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                                 .build()
 
@@ -125,7 +125,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
 
             //ENABLE TO SCALE USING PINCH
             node.getScaleController().setMaxScale(0.9f);
-            node.getScaleController().setMinScale(0.2f);
+            node.getScaleController().setMinScale(0.05f);
 
             node.setRenderable(renderable); //Sets the Renderable to display for this node.
             node.setParent(anchorNode);
@@ -138,6 +138,14 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v){
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(Activity2.this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 

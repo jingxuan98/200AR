@@ -174,12 +174,6 @@ public class Login extends AppCompatActivity {
         startActivityForResult(intent,RC_SIGN_IN);
     }
 
-    @Override
-    public void onBackPressed()
-    {
-      android.os.Process.killProcess(android.os.Process.myPid());
-      System.exit(1);
-    }
 
     @Override
     public void onStart() {
@@ -255,6 +249,13 @@ public class Login extends AppCompatActivity {
 
 
         }
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
