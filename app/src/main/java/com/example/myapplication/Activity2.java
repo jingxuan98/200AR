@@ -124,7 +124,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
             TransformableNode node = new TransformableNode(arFragment.getTransformationSystem());
 
             //ENABLE TO SCALE USING PINCH
-            node.getScaleController().setMaxScale(0.9f);
+            node.getScaleController().setMaxScale(4f);
             node.getScaleController().setMinScale(0.05f);
 
             node.setRenderable(renderable); //Sets the Renderable to display for this node.
